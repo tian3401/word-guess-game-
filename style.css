@@ -1,0 +1,21 @@
+.mainCol{
+    background-color: red;
+    height: 480px;
+    border-style: dashed;
+    border-color: white;
+    color: white;
+}
+
+.sideCol{
+    background-color: black;
+    height: 480px;
+}
+
+.heightIncrease{
+    height: 230px;
+    background-color: black;
+}
+
+#secretWord{
+    padding-top: 10px;
+}

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <title>Hangman Game</title>
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12 heightIncrease"></div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-lg-2 sideCol"></div>
+
+        <div class="col-lg-4 mainCol">
+        <p>Press Any Key to Get Started</p>
+
+        <div>Number of Wins <span id=numberOfWins></span></div> 
+        
+        <div>Number of Remaining Guesses <span id=guessesRemaining></span></div>
+
+        <div>Letters Already Guessed <span id=lettersGuessed></span></div>
+
+        </div>
+
+        <div class="col-lg-4 mainCol">Current Word
+
+        <div id=secretWord></div></div>
+
+        <div class="col-lg-2 sideCol"></div>
+
+    </div>
+
+   
+    <div class="row">
+        <div class="col-lg-12 heightIncrease">
+
+    </div>
+
+<script>
+    var computerGeneratedWord= [["The Cranberries"], ["Shipwrek&Zookeepers"],["Between Us"],["All of Me"],["Vessel"]];
+    var computerRandomNumber= Math.floor(Math.random()*(computerGeneratedWord.length));
+        console.log(computerRandomNumber);
+        console.log(computerGeneratedWord.length);
+     
+
+    var computerWordGenerator= computerGeneratedWord[computerRandomNumber];
+        
+    document.querySelector("#secretWord").innerText= computerWordGenerator; 
+
+    var winsCounter= 0;
+    document.querySelector("#numberOfWins").innerText= winsCounter;
+
+    function computerWordGenerator(event){
+    }
+
+    function winsCalculator(){
+        winsCounter++
+        document.querySelector("#numberOfWins").innerText = winsCounter;
+    }
+
+    var guessesNumber= 15
+    document.querySelector("#guessesRemaining").innerText= guessesNumber;
+
+
+    function guessesCounter(){
+        guessesNumber = guessesNumber-1;
+        if(guessesNumber<0){
+            document.querySelector("#guessesRemaining").innerText=0;
+        }
+        else{
+        document.querySelector("#guessesRemaining").innerText= guessesNumber;
+        }
+    }
+
+    var userLetters= [];
+
+    function lettersGuessed(event){
+        var k= event.key;
+        
+        if(userLetters.indexOf(k)===-1){
+            userLetters.push(k);
+            document.querySelector("#lettersGuessed").innerText= userLetters;
+            console.log("If statements runs");
+        }
+        else{
+            
+            document.querySelector("#lettersGuessed").innerText= userLetters;
+            console.log("Else statement runs");
+            console.log(userLetters);
+            console.log(userLetters.indexOf(k));
+        }
+        
+    }
+
+    document.onkeyup= winsCalculator;
+    document.onkeypress= guessesCounter; 
+    document.onkeydown= lettersGuessed;
+
+  
+
+
+</script>
+
+</div>
+
+</body>
+</html>
