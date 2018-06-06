@@ -56,7 +56,7 @@
     var computerWordBank= ["Zombie", "Ark","Between Us","All of Me","Vessel"];
     var computerRandomNumber= Math.floor(Math.random()*(computerWordBank.length));
     var computerGeneratedWord= computerWordBank[computerRandomNumber];
-    var userLetters= [];
+    var userWrongLetters= [];
     var blanks=[];
     var k;
 
@@ -79,35 +79,33 @@
         document.querySelector("#numberOfWins").innerText = winsCounter;
     }
 
-    //Guess Section of the game 
-
-    function guessesCounter(){
-
-        guessesNumber = guessesNumber-1;
-        if(guessesNumber<0){
-            document.querySelector("#guessesRemaining").innerText=0;
-        }
-        else{
-        document.querySelector("#guessesRemaining").innerText= guessesNumber;
-        }
-    }
-
     //The function runs based on what keys the user presses
     function userAction(){
         k=event.key; 
 
         if(computerGeneratedWord.indexOf(k)===-1){
-            if(userLetters.indexOf(k)===-1){
-            userLetters.push(k);
-            document.querySelector("#lettersGuessed").innerText= userLetters;
+            if(userWrongLetters.indexOf(k)===-1){
+            //Guess section
+            guessesNumber = guessesNumber-1;
+            if(guessesNumber<0){
+            document.querySelector("#guessesRemaining").innerText=0;
+            }
+            else{
+            document.querySelector("#guessesRemaining").innerText= guessesNumber;
+            }
+            //Updates wrong selections and puts in the wrongLetters array
+            userWrongLetters.push(k);
+            document.querySelector("#lettersGuessed").innerText= userWrongLetters;
             }
             else{}
         }
-        //This else statement should contain the for loop to replace the letters of the blanks
+        //Contain the for loop to replace the letters of the blanks
         else{
             for(j=0;j<computerGeneratedWord.length;j++){
                 if(computerGeneratedWord[j]===k){
-                    return console.log("that's a match");
+                    blanks[j]=k;
+                    document.querySelector("#secretWord").innerText= blanks.join(" ");
+                    console.log(blanks);
                 }
             }
         }
@@ -115,7 +113,6 @@
 
     window.onload= startGame;
     document.onkeyup= userAction;
-    document.onkeypress= guessesCounter; 
     document.onkeydown= lettersGuessed;
 
   
