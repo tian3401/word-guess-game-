@@ -11,6 +11,7 @@
 </head>
 <body>
 
+<!---Bootstrap grid for the body-->
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-12 heightIncrease"></div>
@@ -46,17 +47,18 @@
     </div>
 
 <script>
-    var computerGeneratedWord= [["The Cranberries"], ["Shipwrek&Zookeepers"],["Between Us"],["All of Me"],["Vessel"]];
-    var computerRandomNumber= Math.floor(Math.random()*(computerGeneratedWord.length));
-        console.log(computerRandomNumber);
-        console.log(computerGeneratedWord.length);
-     
 
-    var computerWordGenerator= computerGeneratedWord[computerRandomNumber];
+//variables================================================================================ 
+    var computerWordBank= [["Zombie"], ["Ark"],["Between Us"],["All of Me"],["Vessel"]];
+    var computerRandomNumber= Math.floor(Math.random()*(computerWordBank.length));
+    var computerWordGenerator= computerWordBank[computerRandomNumber];
+    var userLetters= [];
+    var winsCounter= 0;
+    var guessesNumber= 15
         
     document.querySelector("#secretWord").innerText= computerWordGenerator; 
 
-    var winsCounter= 0;
+    
     document.querySelector("#numberOfWins").innerText= winsCounter;
 
     function computerWordGenerator(event){
@@ -67,7 +69,7 @@
         document.querySelector("#numberOfWins").innerText = winsCounter;
     }
 
-    var guessesNumber= 15
+   
     document.querySelector("#guessesRemaining").innerText= guessesNumber;
 
 
@@ -81,7 +83,7 @@
         }
     }
 
-    var userLetters= [];
+  
 
     function lettersGuessed(event){
         var k= event.key;
