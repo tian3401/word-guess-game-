@@ -52,22 +52,22 @@
 
 //Variables================================================================================ 
     var winsCounter= 0;
-    var guessesNumber= 15
+    var guessesNumber= 15;
     var computerWordBank= ["Zombie", "Ark","Between Us","All of Me","Vessel"];
     var computerRandomNumber= Math.floor(Math.random()*(computerWordBank.length));
-    var computerWordGenerator= computerWordBank[computerRandomNumber];
+    var computerGeneratedWord= computerWordBank[computerRandomNumber];
     var userLetters= [];
     var blanks=[];
+    var k;
 
 //Functions===============================================================================
-    document.querySelector("#revealedWord").innerText= computerWordGenerator; 
+    document.querySelector("#revealedWord").innerText= computerGeneratedWord; 
     document.querySelector("#numberOfWins").innerText= winsCounter;
     document.querySelector("#guessesRemaining").innerText= guessesNumber;
-
    
-    function startGame(begin){
+    function startGame(){
         //starts the game by putting blanks for each letter of the computer generated word 
-        for(i=0;i<computerWordGenerator.length;i++){
+        for(i=0;i<computerGeneratedWord.length;i++){
             blanks.push('_ ');
         //the .join gets rid of the commas in the array by joining the indices    
             document.querySelector("#secretWord").innerText= blanks.join(" ");
@@ -79,7 +79,10 @@
         document.querySelector("#numberOfWins").innerText = winsCounter;
     }
 
+    //Guess Section of the game 
+
     function guessesCounter(){
+
         guessesNumber = guessesNumber-1;
         if(guessesNumber<0){
             document.querySelector("#guessesRemaining").innerText=0;
@@ -89,22 +92,29 @@
         }
     }
 
-    function lettersGuessed(event){
-        var k= event.key;
-        
-        if(userLetters.indexOf(k)===-1){
+    //The function runs based on what keys the user presses
+    function userAction(){
+        k=event.key; 
+
+        if(computerGeneratedWord.indexOf(k)===-1){
+            if(userLetters.indexOf(k)===-1){
             userLetters.push(k);
             document.querySelector("#lettersGuessed").innerText= userLetters;
+            }
+            else{}
         }
+        //This else statement should contain the for loop to replace the letters of the blanks
         else{
-            
-            document.querySelector("#lettersGuessed").innerText= userLetters;
+            for(j=0;j<computerGeneratedWord.length;j++){
+                if(computerGeneratedWord[j]===k){
+                    return console.log("that's a match");
+                }
+            }
         }
-        
     }
 
     window.onload= startGame;
-    document.onkeyup= winsCalculator;
+    document.onkeyup= userAction;
     document.onkeypress= guessesCounter; 
     document.onkeydown= lettersGuessed;
 
