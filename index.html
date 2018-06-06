@@ -53,9 +53,10 @@
 //Variables================================================================================ 
     var winsCounter= 0;
     var guessesNumber= 15;
-    var computerWordBank= ["Zombie", "Ark","Between Us","All of Me","Vessel"];
+    var computerWordBank= ["Cranberries", "John Legend","CnBlue","Shipwreck And Zookeepers","A o A"];
     var computerRandomNumber= Math.floor(Math.random()*(computerWordBank.length));
     var computerGeneratedWord= computerWordBank[computerRandomNumber];
+    var computerGeneratedWordLowerCase= computerGeneratedWord.toLowerCase();
     var userWrongLetters= [];
     var blanks=[];
     var k;
@@ -83,7 +84,7 @@
     function userAction(){
         k=event.key; 
 
-        if(computerGeneratedWord.indexOf(k)===-1){
+        if(computerGeneratedWordLowerCase.indexOf(k)===-1){
             if(userWrongLetters.indexOf(k)===-1){
             //Guess section
             guessesNumber = guessesNumber-1;
@@ -101,11 +102,10 @@
         }
         //Contain the for loop to replace the letters of the blanks
         else{
-            for(j=0;j<computerGeneratedWord.length;j++){
-                if(computerGeneratedWord[j]===k){
+            for(j=0;j<computerGeneratedWordLowerCase.length;j++){
+                if(computerGeneratedWordLowerCase[j]===k){
                     blanks[j]=k;
                     document.querySelector("#secretWord").innerText= blanks.join(" ");
-                    console.log(blanks);
                 }
             }
         }
