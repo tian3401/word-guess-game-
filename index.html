@@ -34,7 +34,8 @@
 
         <div class="col-lg-4 mainCol">Current Word
 
-        <div id=secretWord></div></div>
+        <div id=secretWord></div>
+        <div id=revealedWord></div></div>
 
         <div class="col-lg-2 sideCol"></div>
 
@@ -48,30 +49,35 @@
 
 <script>
 
-//variables================================================================================ 
-    var computerWordBank= [["Zombie"], ["Ark"],["Between Us"],["All of Me"],["Vessel"]];
+
+//Variables================================================================================ 
+    var winsCounter= 0;
+    var guessesNumber= 15
+    var computerWordBank= ["Zombie", "Ark","Between Us","All of Me","Vessel"];
     var computerRandomNumber= Math.floor(Math.random()*(computerWordBank.length));
     var computerWordGenerator= computerWordBank[computerRandomNumber];
     var userLetters= [];
-    var winsCounter= 0;
-    var guessesNumber= 15
-        
-    document.querySelector("#secretWord").innerText= computerWordGenerator; 
+    var blanks=[];
 
-    
+//Functions===============================================================================
+    document.querySelector("#revealedWord").innerText= computerWordGenerator; 
     document.querySelector("#numberOfWins").innerText= winsCounter;
+    document.querySelector("#guessesRemaining").innerText= guessesNumber;
 
-    function computerWordGenerator(event){
+   
+    function startGame(begin){
+        //starts the game by putting blanks for each letter of the computer generated word 
+        for(i=0;i<computerWordGenerator.length;i++){
+            blanks.push('_ ');
+        //the .join gets rid of the commas in the array by joining the indices    
+            document.querySelector("#secretWord").innerText= blanks.join(" ");
+        }
     }
 
     function winsCalculator(){
         winsCounter++
         document.querySelector("#numberOfWins").innerText = winsCounter;
     }
-
-   
-    document.querySelector("#guessesRemaining").innerText= guessesNumber;
-
 
     function guessesCounter(){
         guessesNumber = guessesNumber-1;
@@ -83,26 +89,21 @@
         }
     }
 
-  
-
     function lettersGuessed(event){
         var k= event.key;
         
         if(userLetters.indexOf(k)===-1){
             userLetters.push(k);
             document.querySelector("#lettersGuessed").innerText= userLetters;
-            console.log("If statements runs");
         }
         else{
             
             document.querySelector("#lettersGuessed").innerText= userLetters;
-            console.log("Else statement runs");
-            console.log(userLetters);
-            console.log(userLetters.indexOf(k));
         }
         
     }
 
+    window.onload= startGame;
     document.onkeyup= winsCalculator;
     document.onkeypress= guessesCounter; 
     document.onkeydown= lettersGuessed;
