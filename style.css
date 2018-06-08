@@ -16,12 +16,10 @@
     padding: 0;
 }
 
-#revealedWord{
-    padding-top: 10px;
-}
-
 #videoPlayer{
     align-content: center;
+    width:400px; 
+    height:220px;
 }
 
 #videoContainer{
@@ -44,4 +42,6 @@
 
 #bottomGif{
     background-size: cover;
+    width:2000px;
+    height:230px;
 }
