@@ -1,5 +1,5 @@
 .mainCol{
-    background-color: red;
+    background-color:#a6a7a1;
     height: 480px;
     border-style: dashed;
     border-color: white;
@@ -13,7 +13,7 @@
 
 .heightIncrease{
     height: 230px;
-    background-color: black;
+    padding: 0;
 }
 
 #revealedWord{
@@ -22,4 +22,26 @@
 
 #videoPlayer{
     align-content: center;
+}
+
+#videoContainer{
+   overflow: hidden;
+   margin:0;
+   padding:0;
+}
+
+.jumbotron{     
+    margin:0;
+    padding:0;
+}
+
+.sideBanners{
+    background-image: url(side.jpg);
+    max-width: 100%;
+    max-height: 100%;
+    background-size: contain;
+}
+
+#bottomGif{
+    background-size: cover;
 }
