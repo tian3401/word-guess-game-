@@ -41,13 +41,12 @@ cover= new Array();
 
 
 function startGame(){
-    console.log("game started");
     //Starts the game by generating random word 
     computerRanNum= Math.floor(Math.random()*(computerWordBank.length));
     computerGenWord= computerWordBank[computerRanNum];
     computerGenWordLowCase= computerGenWord.toLowerCase();
     //Sets up number of guesses
-    numberOfGuesses=10;
+    numberOfGuesses=2;
     //Sets arrays to default 
     correctLetters=0;
     userCorrectLetters=[];
@@ -71,22 +70,22 @@ function startGame(){
 function userAction(){
     k=event.key; 
 
+    //Checks to see if the user has guessed the wrong letter before
     if(computerGenWordLowCase.indexOf(k)===-1){
-        //Checks to see if the user has guessed the wrong letter before
         //Updates wrong selections and puts in the wrongLetters array
         if(userWrongLetters.indexOf(k)===-1){
         //If wrong letter is unique run the following 
         userWrongLetters.push(k);
         document.querySelector("#lettersGuessed").innerText= userWrongLetters;
         numberOfGuesses = numberOfGuesses-1;
-            if(numberOfGuesses<0){
-            document.querySelector("#guessesRemaining").innerText=0;
+            //Restarts the game if guesses hit 0
+            if(numberOfGuesses===0){
+            startGame();
             }
             else{
             document.querySelector("#guessesRemaining").innerText= numberOfGuesses;
             }
         }
-        else{}
     }
     //Contains the for loop to replace the letters of the blanks
     else{
@@ -96,10 +95,8 @@ function userAction(){
             document.querySelector("#secretWord").innerText= blanks.join(" ");
             //Correct letters will increment by 1 if found in the array 
             correctLetters++;
-            
             //Ensures that repeated correct letters are not stored in userCorrectLetters array
             if(userCorrectLetters.indexOf(k)>-1){
-                correctLetters=correctLetters;
             }
             else{
             userCorrectLetters.push(k);
@@ -113,7 +110,7 @@ function userAction(){
         changeVid();
         playVideo();
         startGame();
-       } 
+        } 
     }
 }
 
