@@ -72,12 +72,12 @@ function userAction(){
     k=event.key; 
 
     if(computerGenWordLowCase.indexOf(k)===-1){
-        //Updates wrong selections and puts in the wrongLetters array
-        userWrongLetters.push(k);
-        document.querySelector("#lettersGuessed").innerText= userWrongLetters;
         //Checks to see if the user has guessed the wrong letter before
+        //Updates wrong selections and puts in the wrongLetters array
         if(userWrongLetters.indexOf(k)===-1){
         //If wrong letter is unique run the following 
+        userWrongLetters.push(k);
+        document.querySelector("#lettersGuessed").innerText= userWrongLetters;
         numberOfGuesses = numberOfGuesses-1;
             if(numberOfGuesses<0){
             document.querySelector("#guessesRemaining").innerText=0;
