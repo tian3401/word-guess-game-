@@ -21,7 +21,7 @@ var cover;
 
 //Global Variables==========================================================================================     
 winsCounter=0;
-computerWordBank= ["BadWolves", "JohnLegend","CnBlue","ShipwreckAndZookeepers","Heize"];
+computerWordBank= ["BadWolves", "JohnLegend","CnBlue","ShipwrekAndZookeepers","Heize"];
 blanks=[];
 correctLetAlreadyGuessed=[];
 v= new Array();
@@ -31,7 +31,7 @@ v= new Array();
     v[3]= ["Between Us.mp4"];
     v[4]= ["Star.mp4"];
 cover= new Array();
-    cover[0]= ["shipwreck&zookeepers.jpg"];
+    cover[0]= ["shipwrek&zookeepers.jpg"];
     cover[1]= ["john.jpg"];
     cover[2]= ["badwolves.jpg"];
     cover[3]= ["cnblue.jpg"];
@@ -115,7 +115,7 @@ function userAction(){
 }
 
 function changeVid(){
-    if(computerGenWord==="ShipwreckAndZookeepers"){
+    if(computerGenWord==="ShipwrekAndZookeepers"){
         document.querySelector("video").setAttribute("src", v[0]);
         document.querySelector("#backgroundImage").setAttribute("style","background-image: url("+ cover[0]+")");
     }
