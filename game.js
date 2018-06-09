@@ -46,7 +46,7 @@ function startGame(){
     computerGenWord= computerWordBank[computerRanNum];
     computerGenWordLowCase= computerGenWord.toLowerCase();
     //Sets up number of guesses
-    numberOfGuesses=2;
+    numberOfGuesses=10;
     //Sets arrays to default 
     correctLetters=0;
     userCorrectLetters=[];
